@@ -69,7 +69,7 @@ li:hover{
 	margin:auto; 
 	display:inline; 
 	top:3vh; 
-	width:100%; 
+	width:100%;
 }
 
 #searchButton{
@@ -84,10 +84,6 @@ li:hover{
 	border-bottom-right-radius:3px;
 	border-top-right-radius:3px;   
 	left:-0.4vw; 
-}
-
-#add:hover,#searchButton:hover,#delete:hover,#done:hover{
-	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 }
 
 #add{
@@ -119,20 +115,32 @@ table,th,td{
 th,td{
 	padding:0.7vw; 
 }
+td{
+	max-width:3vw;  
+}
 
-#delete{
-	background-color:red;
-	color:white;
-	padding:0.5vw;
+#delete,#edit{
+	color:black;
+	padding:0.5vw 2vw 0.5vw 2vw;
 	border-radius:2px;
 	cursor:pointer;    
-	border:none; 
+	border:none;  
+	outline:0; 
 }
-#done{
+
+#edit:hover{
 	background-color:green;
 	color:white;
-	padding:0.5vw;
-	border-radius:2px;
-	cursor:pointer; 
-	border:none;    
+}
+
+#delete:hover{
+	background-color:red; 
+	color:white;
+}
+
+#editBox{
+	outline:0;
+	border:none;
+	text-align:center; 
+	font-size:16px; 
 }

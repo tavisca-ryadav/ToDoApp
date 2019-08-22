@@ -9,46 +9,51 @@ window.addEventListener("load",function(){
 });
 
 function showResult(searchContent){
-	let content="<tr><th>#</th><th>TASK</th><th>DELETE</th><th>DONE</th></tr>";
+	let content="<tr><th>#</th><th>TASK</th><th>EDIT</th><th>DELETE</th></tr>";
 	for(let i=1;i<task.length+1;i++){
 		if(task[i-1].toLowerCase().includes(searchContent.toLowerCase())){
 			content+=(`<td>${i}</td>
-				<td id=${task[i-1]}>${task[i-1]}</td>
-				<td><button id="delete" onclick="deleteTask()" value=${task[i-1]}>DELETE</span></td>
-				<td><button id = "done" onclick="doneTask()" value=${task[i-1]}>DONE</span></td></tr>`);
+				<td>${task[i-1]}</td>
+				<td><button id = "edit" onclick="editTask()" value=${task[i-1]}>
+				<i class="fa fa-pencil"></i></span></td>
+				<td><button id="delete" onclick="deleteTask()" value=${task[i-1]}>
+				<i class="fa fa-trash"></i></span></td>
+				</tr>`);
 			}
 		}
 		tableContent.innerHTML = content;
 }
 
-function showAll(){
-	let content="<tr><th>#</th><th>TASK</th><th>DELETE</th><th>DONE</th></tr>";
-	for(let i=1;i<task.length+1;i++){
-		content+=(`<td>${i}</td>
-			<td id=${task[i-1]}>${task[i-1]}</td>
-			<td><button id="delete" onclick="deleteTask()" value=${task[i-1]}>DELETE</button></td>
-			<td><button id ="done" onclick="doneTask()" value=${task[i-1]}>DONE</button></td></tr>`);
+function showAll(){	
+	let content="<tr><th>#</th><th>TASK</th><th>EDIT</th><th>DELETE</th></tr>";
+	for(let i=0;i<task.length;i++){
+		content+=(`<tr id="${i}">
+			<td>${i+1}</td>
+			<td>${task[i]}</td>
+			<td><button id = "edit" onclick="editTask(${i})">
+			<i class="fa fa-pencil"></i></button></td>
+			<td><button id="delete" onclick="deleteTask(${i})">
+			<i class="fa fa-trash"></i></button></td>
+			</tr>`);
 	}
 	tableContent.innerHTML = content;
 }
 
-function deleteTask(){
-	var taskToRemove = document.getElementById("delete").value;
-	for(let i=0;i<task.length;i++){
-		if(taskToRemove==task[i]){
-			task.splice(i,1);
-			break;
-		}
-	}
+function deleteTask(indexToDelete){
+	task.splice(indexToDelete,1);
 	showAll();
 }
 
-function doneTask(){
-	var taskDone = document.getElementById("delete").value;
-	var textValue = document.getElementById(taskDone); 
-	textValue.style.textDecoration = "line-through";
-	textValue.style.fontStyle= "italic";
-	textValue.style.color = "green";
+function editTask(indexToEdit){
+ var taskToEdit = document.getElementById(indexToEdit);
+ taskToEdit.childNodes[3].innerHTML = `<input type = 'text' id ="editBox" value=${task[indexToEdit]}>`;
+ taskToEdit.childNodes[5].innerHTML=`<button onclick="replace(${indexToEdit})" id="edit">
+ <i class="fa fa-check"></i></button>`;
+}
+
+function replace(indexToReplace){
+	task[indexToReplace] =  document.getElementById("editBox").value;
+	showAll();
 }
 
 function act(){
