@@ -4,18 +4,30 @@
 	<title>To Do App</title>
 	<link rel="stylesheet" type="text/css" href="style.css">
 	<script type="text/javascript" src="todo.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
 <div class="header">
-	<span class="navbutton" onclick="showBar()">NAV BUTTON</span>
-	<span class="topic">MY APP</span>
+	<span id="navbutton" onclick="showBar()"><i class="fa fa-bars" style="font-size:22px;"></i></span>
+	<span id="topic">MY APP</span>
 </div>
-<div class="container">
-	<div class="navbar"></div>
+<div class="container" onclick="containFun()">
+	<div id="navbar">
+		<ul>
+			<li>HOME</li>
+			<li>TODO</li>
+			<li>ABOUT</li>
+		</ul>
+	</div>
 	<div class="todo">
-		<div class="searchbar"></div>
-		<div class="suggestion"></div>
-		<div class="displaytable"></div>
+		<div id="searchBar">
+			<input type = "text" id="searchBox" style="padding:0.5vw;width:40%">
+			<span id = "searchButton" onclick="act()">SEARCH</span>
+			<span id = "add" onclick="addTask()">+ADD</span>
+		</div>
+		<div id="suggestion"></div>
+		<table id = "content">
+		</table>
 	</div>
 </div>
 </body>
