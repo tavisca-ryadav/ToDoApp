@@ -5,22 +5,25 @@ window.addEventListener("load",function(){
 	showbar = false;
 	task = ["Eat","Sleep","Repeat","Running","Study"];
 	tableContent = document.getElementById("content");
-	var searchBox = document.getElementById("searchBox")
+	var searchBox = document.getElementById("se")
 	showAll();
 });
 
 
+
+
 function showResult(searchContent){
 	let content="<tr><th>#</th><th>TASK</th><th>EDIT</th><th>DELETE</th></tr>";
-	for(let i=1;i<task.length+1;i++){
-		if(task[i-1].toLowerCase().includes(searchContent.toLowerCase())){
-			content+=(`<td>${i}</td>
-				<td>${task[i-1]}</td>
-				<td><button id = "edit" onclick="editTask()" value=${task[i-1]}>
-				<i class="fa fa-pencil"></i></span></td>
-				<td><button id="delete" onclick="deleteTask()" value=${task[i-1]}>
-				<i class="fa fa-trash"></i></span></td>
-				</tr>`);
+	for(let i=0;i<task.length;i++){
+		if(task[i].toLowerCase().includes(searchContent.toLowerCase())){
+			content+=(`<tr id="${i}">
+			<td>${i+1}</td>
+			<td>${task[i]}</td>
+			<td><button id = "edit" onclick="editTask(${i})">
+			<i class="fa fa-pencil"></i></button></td>
+			<td><button id="delete" onclick="deleteTask(${i})">
+			<i class="fa fa-trash"></i></button></td>
+			</tr>`);
 			}
 		}
 		tableContent.innerHTML = content;
