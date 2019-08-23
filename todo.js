@@ -3,10 +3,12 @@ var showbar,navbar,task,tableContent;
 window.addEventListener("load",function(){
 	navbar = document.getElementById("navbar");
 	showbar = false;
-	task = ["Eat","Sleep","Repeat","Running","Study","Youtube","Basketball"];
+	task = ["Eat","Sleep","Repeat","Running","Study"];
 	tableContent = document.getElementById("content");
+	var searchBox = document.getElementById("searchBox")
 	showAll();
 });
+
 
 function showResult(searchContent){
 	let content="<tr><th>#</th><th>TASK</th><th>EDIT</th><th>DELETE</th></tr>";
@@ -52,7 +54,10 @@ function editTask(indexToEdit){
 }
 
 function replace(indexToReplace){
-	task[indexToReplace] =  document.getElementById("editBox").value;
+	var newValue = document.getElementById("editBox").value;
+	if(newValue!=""){
+		task[indexToReplace] =  newValue;
+	}
 	showAll();
 }
 
@@ -84,6 +89,7 @@ function showBar(){
 		showbar=false;
 	}
 }
+
 
 function containFun(){
 	navbar.style.left="-22vw";
